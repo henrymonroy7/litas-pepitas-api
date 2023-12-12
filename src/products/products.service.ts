@@ -17,6 +17,8 @@ export class ProductService {
   ) {}
 
   async create(createProductDto: CreateProductDto) {
+    // const code = uuid.split("-").join("").substring(0, 8);
+    // const sku =
     return await this.productRepository.save(createProductDto);
   }
 
@@ -36,16 +38,14 @@ export class ProductService {
         "stock",
         "sku",
         "images",
+        "colors",
+        "tags",
         "category.id",
         "category.name",
         "category.mnemonic",
       ],
       filterableColumns: {
-        moduleId: [FilterOperator.IN],
         name: [FilterOperator.EQ, FilterOperator.ILIKE, FilterSuffix.NOT],
-        "application.applicationId": [FilterOperator.EQ, FilterOperator.IN],
-        path: [FilterOperator.EQ, FilterOperator.CONTAINS],
-        valid: [FilterOperator.EQ],
       },
     });
   }
@@ -67,7 +67,16 @@ export class ProductService {
     return updateResult;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async remove(id: number) {
+    const deleteResult = await this.productRepository.delete(id);
+    if (!deleteResult)
+      throw new NotFoundException(`Product with id ${id} not found`);
+    return deleteResult;
+  }
+
+  // const { v4: uuidv4 } = require('uuid');
+
+  private generarCodigoUnico(uuid) {
+    return uuid.split("-").join("").substring(0, 6);
   }
 }

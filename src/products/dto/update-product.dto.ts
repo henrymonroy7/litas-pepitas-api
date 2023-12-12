@@ -10,10 +10,12 @@ import {
 
 export class UpdateProductDto {
   @IsString()
-  name: string;
+  @IsOptional()
+  name?: string;
 
   @IsString()
-  shortDescription: string;
+  @IsOptional()
+  shortDescription?: string;
 
   @IsString()
   @IsOptional()
@@ -22,11 +24,13 @@ export class UpdateProductDto {
   @IsNumber()
   @IsPositive()
   @Min(1000)
-  price: number;
+  @IsOptional()
+  price?: number;
 
   @IsNumber()
   @Min(0)
-  stock: number;
+  @IsOptional()
+  stock?: number;
 
   @IsString({ each: true })
   @IsArray()

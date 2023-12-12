@@ -7,31 +7,39 @@ import {
   IsPositive,
   IsString,
   Min,
+  ValidateNested,
 } from "class-validator";
-import { CreateCategoryDto } from "../../categories/dto/create-category.dto";
+
+import { Type } from "class-transformer";
+import { CategoryDto } from "../../categories/dto/category.dto";
+import { SupplyDto } from "../../supplies/dto/supply.dto";
 
 export class CreateProductDto {
   @IsString()
   name: string;
 
   @IsString()
-  shortDescription: string;
+  @IsOptional()
+  shortDescription?: string;
 
   @IsString()
   @IsOptional()
   description?: string;
 
   @IsString()
-  sku: string; //Prox. Se debe calcular antes de guardar: [CATEGORIA]-[MATERIAL]-[#consecutivo]-[INFOADICIONAL]
+  @IsOptional()
+  sku?: string; //Prox. Se debe calcular antes de guardar: [CATEGORY]-[SUPPLY]-[CODIGO]
 
   @IsNumber()
   @IsPositive()
   @Min(1000)
-  price: number;
+  @IsOptional()
+  price?: number;
 
   @IsNumber()
   @Min(0)
-  stock: number;
+  @IsOptional()
+  stock?: number;
 
   @IsString({ each: true })
   @IsArray()
@@ -44,6 +52,18 @@ export class CreateProductDto {
   @IsIn(["Rojo", "Verde", "Azul"]) //Hacer un enum
   colors?: string[];
 
+  @IsString({ each: true })
+  @IsArray()
+  @IsOptional()
+  tags?: string[];
+
   @IsNotEmptyObject()
-  category: CreateCategoryDto;
+  @ValidateNested()
+  @Type(() => CategoryDto)
+  category: CategoryDto;
+
+  @IsNotEmptyObject()
+  @ValidateNested()
+  @Type(() => SupplyDto)
+  supply: SupplyDto;
 }

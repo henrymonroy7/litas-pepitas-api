@@ -14,6 +14,7 @@ import { ShoppingCartModule } from "./shopping-cart/shopping-cart.module";
 import { UsersModule } from "./users/users.module";
 import { BillsModule } from "./bills/bills.module";
 import { SeedModule } from "./seed/seed.module";
+import { SuppliesModule } from './supplies/supplies.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { SeedModule } from "./seed/seed.module";
     UsersModule,
     BillsModule,
     SeedModule,
+    SuppliesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

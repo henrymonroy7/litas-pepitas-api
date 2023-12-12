@@ -4,29 +4,37 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-} from "typeorm";
-import { Common } from "../../common/entities/common.entity";
-import { Product } from "../../products/entities/product.entity";
+} from 'typeorm';
+import { Common } from '../../common/entities/common.entity';
+import { Product } from '../../products/entities/product.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
 export class Category extends Common {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column("text", { nullable: false, unique: true })
+  @ApiProperty()
+  @Column('text', { nullable: false, unique: true })
   name: string;
 
-  @Column("text", { nullable: false })
+  @ApiProperty()
+  @Column('text', { nullable: false })
   description: string;
 
-  @Column("text", { nullable: false, unique: true })
+  @ApiProperty()
+  @Column('text', { nullable: false, unique: true })
   mnemonic: string;
 
+  @ApiProperty()
   @OneToMany(() => Product, (prod) => prod.category)
   products: Product[];
 
   @BeforeInsert()
   beforeInsert() {
-    if (!this.description) this.description = "";
+    this.name = this.name.toUpperCase();
+    this.mnemonic = this.mnemonic.toUpperCase();
+    if (!this.description) this.description = '';
   }
 }
