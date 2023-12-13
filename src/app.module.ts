@@ -1,20 +1,19 @@
 import { Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-
 import { CommonModule } from "./common/common.module";
-import { ProductosModule } from "./products/products.module";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { envConfigSchema } from "./config/config.validation";
 import { envConfig } from "./config/env.config";
-import { CategoriesModule } from "./categories/categories.module";
 import { SalesModule } from "./sales/sales.module";
 import { ShoppingCartModule } from "./shopping-cart/shopping-cart.module";
 import { UsersModule } from "./users/users.module";
 import { BillsModule } from "./bills/bills.module";
-import { SeedModule } from "./seed/seed.module";
-import { SuppliesModule } from './supplies/supplies.module';
+import { ProductosModule } from "./modules/products/products.module";
+import { CategoriesModule } from "./modules/categories/categories.module";
+import { SuppliesModule } from "./modules/supplies/supplies.module";
+import { SeedModule } from "./modules/seed/seed.module";
 
 @Module({
   imports: [

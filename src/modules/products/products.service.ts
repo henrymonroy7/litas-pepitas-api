@@ -17,8 +17,6 @@ export class ProductService {
   ) {}
 
   async create(createProductDto: CreateProductDto) {
-    // const code = uuid.split("-").join("").substring(0, 8);
-    // const sku =
     return await this.productRepository.save(createProductDto);
   }
 
@@ -72,11 +70,5 @@ export class ProductService {
     if (!deleteResult)
       throw new NotFoundException(`Product with id ${id} not found`);
     return deleteResult;
-  }
-
-  // const { v4: uuidv4 } = require('uuid');
-
-  private generarCodigoUnico(uuid) {
-    return uuid.split("-").join("").substring(0, 6);
   }
 }

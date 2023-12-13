@@ -1,7 +1,7 @@
 import { InjectRepository } from "@nestjs/typeorm";
-import { BaseRepository } from "../common/base-repository.repository";
 import { Repository } from "typeorm";
 import { Supply } from "./entities/supply.entity";
+import { BaseRepository } from "../../common/base-repository.repository";
 
 export class SuppliesRepository extends BaseRepository<Supply> {
   constructor(

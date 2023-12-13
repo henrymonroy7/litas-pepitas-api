@@ -4,10 +4,10 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Common } from '../../common/entities/common.entity';
-import { Product } from '../../products/entities/product.entity';
-import { ApiProperty } from '@nestjs/swagger';
+} from "typeorm";
+import { Product } from "../../products/entities/product.entity";
+import { ApiProperty } from "@nestjs/swagger";
+import { Common } from "../../../common/entities/common.entity";
 
 @Entity()
 export class Category extends Common {
@@ -16,15 +16,15 @@ export class Category extends Common {
   id: number;
 
   @ApiProperty()
-  @Column('text', { nullable: false, unique: true })
+  @Column("text", { nullable: false, unique: true })
   name: string;
 
   @ApiProperty()
-  @Column('text', { nullable: false })
+  @Column("text", { nullable: false })
   description: string;
 
   @ApiProperty()
-  @Column('text', { nullable: false, unique: true })
+  @Column("text", { nullable: false, unique: true })
   mnemonic: string;
 
   @ApiProperty()
@@ -35,6 +35,6 @@ export class Category extends Common {
   beforeInsert() {
     this.name = this.name.toUpperCase();
     this.mnemonic = this.mnemonic.toUpperCase();
-    if (!this.description) this.description = '';
+    if (!this.description) this.description = "";
   }
 }

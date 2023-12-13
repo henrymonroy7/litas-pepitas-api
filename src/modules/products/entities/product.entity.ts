@@ -7,10 +7,10 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Category } from "../../categories/entities/category.entity";
-import { Common } from "../../common/entities/common.entity";
 import { ApiProperty } from "@nestjs/swagger";
 import { Supply } from "../../supplies/entities/supply.entity";
 import { v4 as uuid } from "uuid";
+import { Common } from "../../../common/entities/common.entity";
 
 @Entity()
 export class Product extends Common {

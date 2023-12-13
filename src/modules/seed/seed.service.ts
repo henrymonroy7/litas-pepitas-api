@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
-import { CategoriesService } from "../categories/categories.service";
 import { SEED_CATEGORIES } from "./data/seed-categories";
-import { SuppliesService } from "../supplies/supplies.service";
 import { SEED_SUPPLIES } from "./data/seed-supplies";
+import { CategoriesService } from "../categories/categories.service";
+import { SuppliesService } from "../supplies/supplies.service";
 
 @Injectable()
 export class SeedService {

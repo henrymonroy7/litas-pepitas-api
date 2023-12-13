@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Common } from "../../common/entities/common.entity";
 import { ApiProperty } from "@nestjs/swagger";
 import { Product } from "../../products/entities/product.entity";
+import { Common } from "../../../common/entities/common.entity";
 
 @Entity()
 export class Supply extends Common {
