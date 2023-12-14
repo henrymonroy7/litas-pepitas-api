@@ -101,7 +101,7 @@ export class Product extends Common {
   beforeInsert() {
     const code = uuid().split("-").join("").substring(0, 8);
     this.sku =
-      `${this.category.mnemonic}-${this.supply.mnemonic}-${code}`.toUpperCase();
+      `${this.category?.mnemonic}-${this.supply?.mnemonic}-${code}`.toUpperCase();
     this.name = !this.name ? "" : this.name.toUpperCase();
   }
 }

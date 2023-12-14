@@ -10,7 +10,7 @@ import { SalesModule } from "./sales/sales.module";
 import { ShoppingCartModule } from "./shopping-cart/shopping-cart.module";
 import { UsersModule } from "./users/users.module";
 import { BillsModule } from "./bills/bills.module";
-import { ProductosModule } from "./modules/products/products.module";
+import { ProductsModule } from "./modules/products/products.module";
 import { CategoriesModule } from "./modules/categories/categories.module";
 import { SuppliesModule } from "./modules/supplies/supplies.module";
 import { SeedModule } from "./modules/seed/seed.module";
@@ -41,7 +41,7 @@ import { SeedModule } from "./modules/seed/seed.module";
       }),
       inject: [ConfigService],
     }),
-    ProductosModule,
+    ProductsModule,
     CommonModule,
     CategoriesModule,
     SalesModule,

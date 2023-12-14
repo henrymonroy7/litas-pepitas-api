@@ -26,10 +26,6 @@ export class CreateProductDto {
   @IsOptional()
   description?: string;
 
-  @IsString()
-  @IsOptional()
-  sku?: string;
-
   @IsNumber()
   @IsPositive()
   @Min(1000)

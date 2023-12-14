@@ -81,7 +81,7 @@ export const SEED_CATEGORIES: seedCategory[] = [
     description: "This is a description for PULSERAS DE ANILLO.",
   },
   {
-    name: "SHOKER",
+    name: "SHOKERS",
     mnemonic: "SHKR",
     description: "This is a description for SHOKER.",
   },

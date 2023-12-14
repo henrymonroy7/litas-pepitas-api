@@ -23,7 +23,7 @@ export class ProductService {
   async findAll(query: PaginateQuery) {
     return paginate(query, this.productRepository.getRepository(), {
       sortableColumns: ["id", "name", "price", "sku", "category.name"],
-      relations: ["category"],
+      relations: ["category", "supply"],
       nullSort: "last",
       defaultSortBy: [["id", "DESC"]],
       searchableColumns: ["name", "price", "sku", "category.name"],
@@ -41,9 +41,22 @@ export class ProductService {
         "category.id",
         "category.name",
         "category.mnemonic",
+        "supply.id",
+        "supply.name",
+        "supply.mnemonic",
       ],
       filterableColumns: {
         name: [FilterOperator.EQ, FilterOperator.ILIKE, FilterSuffix.NOT],
+        "category.name": [
+          FilterOperator.EQ,
+          FilterOperator.ILIKE,
+          FilterSuffix.NOT,
+        ],
+        "supply.name": [
+          FilterOperator.EQ,
+          FilterOperator.ILIKE,
+          FilterSuffix.NOT,
+        ],
       },
     });
   }
@@ -70,5 +83,11 @@ export class ProductService {
     if (!deleteResult)
       throw new NotFoundException(`Product with id ${id} not found`);
     return deleteResult;
+  }
+
+  /**Usar solo para endpoint seed */
+  async removeAll() {
+    const query = this.productRepository.createQueryBuilder();
+    return await query.delete().where({}).execute();
   }
 }
