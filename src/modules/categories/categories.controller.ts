@@ -12,6 +12,7 @@ import { CategoriesService } from "./categories.service";
 import { CreateCategoryDto } from "./dto/create-category.dto";
 import { UpdateCategoryDto } from "./dto/update-category.dto";
 import { ApiTags } from "@nestjs/swagger";
+import { ParseObjectPipe } from "../../common/pipes/parse-object.pipe";
 
 @ApiTags("Categories")
 @Controller("categories")
@@ -36,7 +37,7 @@ export class CategoriesController {
   @Patch(":id")
   update(
     @Param("id", ParseIntPipe) id: number,
-    @Body() updateCategoryDto: UpdateCategoryDto,
+    @Body(ParseObjectPipe) updateCategoryDto: UpdateCategoryDto,
   ) {
     return this.categoriesService.update(id, updateCategoryDto);
   }

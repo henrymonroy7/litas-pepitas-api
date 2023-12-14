@@ -21,7 +21,7 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Post()
-  create(@Body(ParseObjectPipe) createProductoDto: CreateProductDto) {
+  create(@Body() createProductoDto: CreateProductDto) {
     return this.productService.create(createProductoDto);
   }
 
