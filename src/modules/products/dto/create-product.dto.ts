@@ -1,6 +1,6 @@
 import {
   IsArray,
-  IsIn,
+  IsEnum,
   IsNotEmptyObject,
   IsNumber,
   IsOptional,
@@ -13,6 +13,8 @@ import {
 import { Type } from "class-transformer";
 import { CategoryDto } from "../../categories/dto/category.dto";
 import { SupplyDto } from "../../supplies/dto/supply.dto";
+import ProductColor from "../enums/colors.enum";
+import ProductTag from "../enums/tags.enum";
 
 export class CreateProductDto {
   @IsString()
@@ -45,22 +47,13 @@ export class CreateProductDto {
   @IsString({ each: true })
   @IsArray()
   @IsOptional()
-  @IsIn([
-    "rojo",
-    "verde",
-    "azul",
-    "negro",
-    "anaranjado",
-    "rosa",
-    "blanco",
-    "amarillo",
-  ]) //Hacer un enum
+  @IsEnum(ProductColor, { each: true })
   colors?: string[];
 
   @IsString({ each: true })
   @IsArray()
   @IsOptional()
-  @IsIn(["kids", "zodiaco", "pets", "calzado", "religioso", "neon"]) //Hacer un enum
+  @IsEnum(ProductTag, { each: true })
   tags?: string[];
 
   @IsNotEmptyObject()

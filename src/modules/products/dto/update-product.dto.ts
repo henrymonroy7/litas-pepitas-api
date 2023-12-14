@@ -1,12 +1,14 @@
 import {
   IsArray,
-  IsIn,
+  IsEnum,
   IsNumber,
   IsOptional,
   IsPositive,
   IsString,
   Min,
 } from "class-validator";
+import ProductTag from "../enums/tags.enum";
+import ProductColor from "../enums/colors.enum";
 
 export class UpdateProductDto {
   @IsString()
@@ -40,21 +42,13 @@ export class UpdateProductDto {
   @IsString({ each: true })
   @IsArray()
   @IsOptional()
-  @IsIn([
-    "rojo",
-    "verde",
-    "azul",
-    "negro",
-    "anaranjado",
-    "rosa",
-    "blanco",
-    "amarillo",
-  ]) //Hacer un enum
+  @IsEnum(ProductColor, { each: true })
   colors?: string[];
 
   @IsString({ each: true })
   @IsArray()
   @IsOptional()
-  @IsIn(["kids", "zodiaco", "pets", "calzado", "religioso", "neon"]) //Hacer un enum
+  @IsOptional()
+  @IsEnum(ProductTag, { each: true })
   tags?: string[];
 }
